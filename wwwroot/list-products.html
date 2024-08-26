@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Listesi</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Özel stil */
+        .table thead th {
+            background-color: #f8f9fa; /* Başlık rengini belirle */
+        }
+
+        .table tbody tr:nth-child(odd) {
+            background-color: #f2f2f2; /* Satır arka plan rengini belirle */
+        }
+
+        .table tbody tr:hover {
+            background-color: #e9ecef; /* Üzerine gelindiğinde arka plan rengini belirle */
+        }
+
+        .search-container {
+            margin-bottom: 20px; /* Arama çubuğu ile tablo arasında boşluk */
+        }
+
+            .search-container .btn {
+                margin-left: 10px; /* Buton ile arama çubuğu arasında boşluk */
+            }
+
+        .header-bg {
+            background-color: #EAF0F7;
+        }
+
+        .btn-custom {
+            background-color: #062654;
+            color: white;
+            border: none;
+        }
+
+            .btn-custom:hover,
+            .btn-custom:focus {
+                background-color: #062654;
+                color: white;
+            }
+
+        .container-fluid {
+            padding: 0 15px;
+        }
+
+        .container {
+            padding: 0 15px;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Main div height */
+        .main {
+            height: 1000px;
+        }
+
+        /* Section background color */
+        .page-header {
+            background-color: #062654;
+            color: white;
+        }
+
+        a.font-weight-bold {
+            font-weight: bold; /* Kalın font */
+            text-decoration: none; /* Alt çizgi kaldırılır */
+        }
+
+        .breadcrumb {
+            background-color: #062654;
+        }
+
+        .btn {
+            padding: 10px 20px; /* Butonun iç boşluklarını artırır */
+            font-size: 16px; /* Buton metninin boyutunu artırır */
+        }
+
+        #newProductBtn {
+            font-size: 18px; /* 'Yeni Ürün Oluştur' butonunun metin boyutunu artırır */
+        }
+
+        #operationsBtn {
+            font-size: 18px; /* 'İşlemler' butonunun metin boyutunu artırır */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-bg text-dark p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="image/Logo design Vectors & Illustrations for Free Download _ Freepik.jpg" alt="Logo" style="height: 60px; width: auto;">
+            </div>
+
+            <!-- Navigation and User Info -->
+            <div class="d-flex align-items-center">
+                <a href="admin-dashboard.html" class="btn btn-custom me-2">Ana Sayfa</a>
+                <a href="login.html" class="btn btn-custom me-2">Çıkış</a>
+            </div>
+        </div>
+    </header>
+    <div role="main" class="main">
+        <section class="page-header page-header-classic">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <ul class="breadcrumb">
+                            <li><a href="admin-dashboard.html" class="font-weight-bold">Ana Sayfa</a></li>
+                            <li class="active"> > Ürün Listesi</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col p-static">
+                        <h1 data-title-border>Ürün Listeleme Paneli</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="examples" class="container py-2">
+            <div class="row">
+                <div class="col">
+                    <!-- Arama formu -->
+                    <div class="search-container">
+                        <form id="searchProductForm" class="form-inline">
+                            <input type="text" id="name" class="form-control mb-2 mr-sm-2" placeholder="Ürün Adı">
+                            <input type="text" id="barcode" class="form-control mb-2 mr-sm-2" placeholder="Barkod">
+                            <input type="text" id="categoryName" class="form-control mb-2 mr-sm-2" placeholder="Kategori Adı">
+                            <button type="submit" class="btn btn-primary mb-2">Ara</button>
+                        </form>
+                    </div>
+                    <!-- Ürün listesi tablosu -->
+                    <div class="row">
+                        <div class="col pb-3">
+                            <h4>Ürün Listesi</h4>
+                            <table id="productList" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ad</th>
+                                        <th>Barkod</th>
+                                        <th>Miktar</th>
+                                        <th>Eklenme Tarihi</th>
+                                        <th>Güncelleme Tarihi</th>
+                                        <th>Kategori Adı</th>
+                                        <th>Kullanıcı Adı</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Ürünler buraya yüklenecek -->
+                                </tbody>
+                            </table>
+                            <hr class="solid my-5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" class="bg-light text-dark">
+        <div class="container">
+            <div class="row py-5 my-4">
+                <div class="col-md-7 col-lg-4 mb-5 mb-lg-0 pt-3">
+                    <h5 class="text-3 mb-3">HAKKINDA</h5>
+                    <p>Gaziantep Organize Sanayi Bölgesi, Bakanlar Kurulu Kararı ile T.C. Sanayi ve Ticaret Bakanlığı’na bağlı olarak, Vilayet, Belediye, İl Özel İdaresi, Ticaret Odası Sanayi Odası, Sanayi İş Odaları Derneği ve Organize Sanayi Bölgesi Sanayicileri derneği iştirakleri ile kurulmuştur.</p>
+                    <p class="mb-0">
+                        <a href="admin-dashboard.html" class="btn btn-primary">ANA SAYFA</a>
+                    </p>
+                </div>
+                <div class="col-md-5 col-lg-3 mb-5 mb-lg-0 pt-3">
+                    <h5 class="text-3 mb-3 pb-1">İLETİŞİM</h5>
+                    <p class="text-8 font-weight-bold">
+                        <a href="tel:0123456789" class="text-decoration-none text-dark">(342) 337-1101</a>
+                    </p>
+                    <p class="mb-2">International: <a href="tel:0123456789" class="text-decoration-none">(342) 337-1101</a></p>
+                    <p class="mb-2">Fax: (342) 337-1371</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-1">
+                            <i class="fas fa-map-marker-alt"></i> 1. Organize Sanayi Bölgesi 83120 Nolu Cd. No:7 Şehitkamil / GAZİANTEP
+                        </li>
+                        <li class="mb-1">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:gaosb@gaosb.org" class="text-decoration-none">gaosb@gaosb.org</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-5 pt-3">
+                    <h5 class="text-3 mb-3 pb-1">MESAJ GÖNDER</h5>
+                    <form class="contact-form" action="https://www.okler.net/previews/porto/9.9.0/php/contact-form.php" method="POST">
+                        <input type="hidden" value="Contact Form" name="subject" id="subject">
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" placeholder="Your Name" name="name" id="name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" placeholder="Your Email" name="email" id="email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <textarea data-msg-required="Please enter your message." rows="6" class="form-control" placeholder="Your Message" name="message" id="message"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>

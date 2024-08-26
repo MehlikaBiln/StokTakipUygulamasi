@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap</title>
+    <link rel="stylesheet" href="Loginstyles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2>Giriş Yap</h2>
+            <form id="loginForm">
+                <label for="Username">Kullanıcı Adı</label>
+                <input type="text" id="Username" name="Username" required>
+
+                <label for="Password">Şifre</label>
+                <input type="password" id="Password" name="Password" required>
+
+                <button type="submit">Giriş Yap</button>
+
+                <div id="errorMessage" style="display: none; color: #FF0000;"></div>
+            </form>
+
+            <div class="register-link">
+                <p>Henüz kayıtlı değil misiniz? <a href="register.html">Kayıt Ol</a></p>
+            </div>
+        </div>
+    </div>
+  
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+

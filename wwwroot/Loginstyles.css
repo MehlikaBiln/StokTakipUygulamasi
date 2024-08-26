@@ -1,0 +1,88 @@
+﻿/* Genel Sayfa Stilleri */
+body {
+    background-color: #2265A2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container Stilleri */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Login Box Stilleri */
+.login-box {
+    background-color: #7FADE0;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+    .login-box h2 {
+        color: #FFFFFF;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .login-box label {
+        color: #FFFFFF;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .login-box input[type="text"],
+    .login-box input[type="password"],
+    .login-box input[type="email"]{
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .login-box button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #062654;
+        border: none;
+        border-radius: 5px;
+        color: #FFFFFF;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+        .login-box button:hover {
+            background-color: #0A2D62;
+        }
+
+.register-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+    .register-link a {
+        color: #FFFFFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+#errorMessage {
+    color: #FF0000;
+    text-align: center;
+    margin-top: 1rem;
+}

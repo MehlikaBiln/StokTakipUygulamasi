@@ -1,0 +1,6 @@
+@StokTakipUygulamasi_HostAddress = http://localhost:5032
+
+GET {{StokTakipUygulamasi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
