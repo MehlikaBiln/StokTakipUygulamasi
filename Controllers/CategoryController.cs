@@ -33,13 +33,15 @@ public class CategoryController : ControllerBase
                     Quantity = p.Quantity,
                     AddedDate = p.AddedDate,
                     UpdatedDate = p.UpdatedDate,
-                    CategoryName = c.Name, // Kategori adını ekle
-                    UserName = _context.Users.FirstOrDefault(u => u.Id == p.UserId).Username // Ürün sahibi kullanıcı adı
+                    CategoryName = c.Name,
+                    UserName = _context.Users.FirstOrDefault(u => u.Id == p.UserId).Username,
+                    Unit = p.Unit // Unit alanını ekledik
                 }).ToList()
             }).ToList();
 
         return Ok(categories);
     }
+
 
     // GET: api/category/5
     [HttpGet("{id}")]
@@ -61,7 +63,8 @@ public class CategoryController : ControllerBase
                     AddedDate = p.AddedDate,
                     UpdatedDate = p.UpdatedDate,
                     CategoryName = c.Name,
-                    UserName = _context.Users.FirstOrDefault(u => u.Id == p.UserId).Username
+                    UserName = _context.Users.FirstOrDefault(u => u.Id == p.UserId).Username,
+                    Unit = p.Unit // Unit alanını ekledik
                 }).ToList()
             }).FirstOrDefault();
 
@@ -69,8 +72,10 @@ public class CategoryController : ControllerBase
         {
             return NotFound();
         }
+
         return Ok(category);
     }
+
 
     // POST: api/category
     [HttpPost]

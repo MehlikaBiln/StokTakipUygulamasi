@@ -20,7 +20,6 @@
         {
             _context = context;
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -36,7 +35,8 @@
                     AddedDate = p.AddedDate,
                     UpdatedDate = p.UpdatedDate,
                     CategoryName = p.Category.Name,
-                    UserName = p.User.Username
+                    UserName = p.User.Username,
+                    Unit = p.Unit // Yeni alan
                 })
                 .ToListAsync();
 
@@ -65,11 +65,13 @@
                 AddedDate = product.AddedDate,
                 UpdatedDate = product.UpdatedDate,
                 CategoryName = product.Category.Name,
-                UserName = product.User.Username
+                UserName = product.User.Username,
+                Unit = product.Unit // Yeni alan
             };
 
             return Ok(productDto);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Create(ProductDto productDto)
@@ -98,7 +100,8 @@
                 AddedDate = DateTime.UtcNow,
                 UpdatedDate = DateTime.UtcNow,
                 Category = category,
-                User = user
+                User = user,
+                Unit = productDto.Unit // Yeni alan
             };
 
             _context.Products.Add(product);
@@ -113,11 +116,13 @@
                 AddedDate = product.AddedDate,
                 UpdatedDate = product.UpdatedDate,
                 CategoryName = product.Category.Name,
-                UserName = product.User.Username
+                UserName = product.User.Username,
+                Unit = product.Unit // Yeni alan
             };
 
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, createdProductDto);
         }
+
 
         [HttpPut("decreaseByName")]
         public async Task<IActionResult> DecreaseQuantityByName([FromBody] ProductQuantityUpdateDto dto)
@@ -174,7 +179,7 @@
         }
 
         [HttpGet("WithFilter")]
-        public IActionResult Geturun([FromQuery] string? name, [FromQuery] string? barcode, [FromQuery] string? categoryName)
+        public IActionResult Geturun([FromQuery] string? name, [FromQuery] string? barcode, [FromQuery] string? categoryName, [FromQuery] string? unit)
         {
             IQueryable<Product> query = _context.Products
                 .Include(p => p.Category)
@@ -198,6 +203,12 @@
                 query = query.Where(p => p.Category.Name.ToLower().Contains(lowerCategoryName));
             }
 
+            if (!string.IsNullOrEmpty(unit))
+            {
+                string lowerUnit = unit.ToLower();
+                query = query.Where(p => p.Unit.ToLower().Contains(lowerUnit));
+            }
+
             var products = query.Select(p => new ProductDto
             {
                 Id = p.Id,
@@ -207,7 +218,8 @@
                 AddedDate = p.AddedDate,
                 UpdatedDate = p.UpdatedDate,
                 CategoryName = p.Category.Name,
-                UserName = p.User.Username
+                UserName = p.User.Username,
+                Unit = p.Unit // Yeni alan
             }).ToList();
 
             if (!products.Any())
@@ -218,5 +230,4 @@
             return Ok(products);
         }
     }
-
 }

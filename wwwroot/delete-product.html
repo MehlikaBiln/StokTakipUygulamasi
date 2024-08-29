@@ -117,17 +117,20 @@
                     <div class="container mt-5">
                         <h1>Silinecek Ürün</h1>
                         <form id="deleteProductForm">
-                            <!-- ID güncellendi -->
+                            <!-- Changed from input to select for product selection -->
                             <div class="form-group d-flex align-items-center mb-3">
-                                <label for="productName" class="col-form-label me-3">Ürün Adı:</label>
-                                <input type="text" class="form-control" id="productName" required>
+                                <label for="productNameSelect" class="col-form-label me-3">Ürün Adı:</label>
+                                <select class="form-control" id="productNameSelect" required>
+                                    <!-- Product options will be dynamically added here -->
+                                </select>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-3">Sil</button> <!-- Buton metni güncellendi -->
+                            <button type="submit" class="btn btn-primary mt-3">Sil</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
 
     </div>
    <!-- Footer -->
@@ -194,9 +197,7 @@
             </div>
         </footer>
         <!-- Bootstrap JS ve bağımlılıkları -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
         <script src="script.js"></script>
 
 </body>

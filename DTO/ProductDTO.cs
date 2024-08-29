@@ -6,6 +6,7 @@
     public int Quantity { get; set; }
     public DateTime AddedDate { get; set; }
     public DateTime? UpdatedDate { get; set; }
-    public string CategoryName { get; set; }  // CategoryName alanı eklendi
-    public string UserName { get; set; }  // UserName alanı eklendi
+    public string CategoryName { get; set; }
+    public string UserName { get; set; }
+    public string Unit { get; set; } // Yeni alan
 }

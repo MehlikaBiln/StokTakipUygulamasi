@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using StokTakipUygulamasi.Model;
+using System.Collections.Generic;
 
 namespace StokTakipUygulamasi.Models
 {
@@ -9,5 +10,8 @@ namespace StokTakipUygulamasi.Models
         public ICollection<Product> Products { get; set; } = new List<Product>();
         public int UserId { get; set; }
         public User User { get; set; } // Navigation property
+
+        public ICollection<UserCategory> UserCategories { get; set; } = new List<UserCategory>();
+
     }
 }

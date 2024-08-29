@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using StokTakipUygulamasi.Data;
@@ -11,9 +12,11 @@ using StokTakipUygulamasi.Data;
 namespace StokTakipUygulamasi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240827084606_ahmetttttt")]
+    partial class ahmetttttt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,21 +67,6 @@ namespace StokTakipUygulamasi.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("StokTakipUygulamasi.Model.UserCategory", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("UserId", "CategoryId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("UserCategories");
                 });
 
             modelBuilder.Entity("StokTakipUygulamasi.Models.Category", b =>
@@ -151,25 +139,6 @@ namespace StokTakipUygulamasi.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("StokTakipUygulamasi.Model.UserCategory", b =>
-                {
-                    b.HasOne("StokTakipUygulamasi.Models.Category", "Category")
-                        .WithMany("UserCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("User", "User")
-                        .WithMany("UserCategories")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("StokTakipUygulamasi.Models.Category", b =>
                 {
                     b.HasOne("User", "User")
@@ -184,8 +153,6 @@ namespace StokTakipUygulamasi.Migrations
             modelBuilder.Entity("StokTakipUygulamasi.Models.Category", b =>
                 {
                     b.Navigation("Products");
-
-                    b.Navigation("UserCategories");
                 });
 
             modelBuilder.Entity("User", b =>
@@ -193,8 +160,6 @@ namespace StokTakipUygulamasi.Migrations
                     b.Navigation("Categories");
 
                     b.Navigation("Products");
-
-                    b.Navigation("UserCategories");
                 });
 #pragma warning restore 612, 618
         }

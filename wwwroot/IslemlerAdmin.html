@@ -6,160 +6,158 @@
     <title>Ürün İşlemleri</title>
     <!-- Bootstrap CSS -->
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <style>
-      .header-bg {
-          background-color: #EAF0F7;
-      }
+    <style>
+        .header-bg {
+            background-color: #EAF0F7;
+        }
 
-      .btn-custom {
-          background-color: #2265A2;
-          color: white;
-          border: none;
-      }
+        .btn-custom {
+            background-color: #2265A2;
+            color: white;
+            border: none;
+        }
 
-          .btn-custom:hover,
-          .btn-custom:focus {
-              background-color: #062654;
-              color: white;
-          }
+            .btn-custom:hover,
+            .btn-custom:focus {
+                background-color: #062654;
+                color: white;
+            }
 
-      .container-fluid {
-          padding: 0 15px;
-      }
+        .container-fluid {
+            padding: 0 15px;
+        }
 
-      .container {
-          padding: 0 15px;
-      }
+        .container {
+            padding: 0 15px;
+        }
 
-      .form-section {
-          display: none;
-      }
+        .form-section {
+            display: none;
+        }
 
-      .text-center {
-          text-align: center;
-      }
+        .text-center {
+            text-align: center;
+        }
 
-      /* Main div height */
-      .main {
-          height: 800px;
-      }
+        /* Main div height */
+        .main {
+            height: 800px;
+        }
 
-      /* Section background color */
-      .page-header {
-          background-color: #062654;
-          color: white;
-      }
+        /* Section background color */
+        .page-header {
+            background-color: #062654;
+            color: white;
+        }
 
-     a.font-weight-bold {
-    font-weight: bold; /* Kalın font */
-    text-decoration: none; /* Alt çizgi kaldırılır */
-}
-
-
-      .btn {
-          padding: 10px 20px; /* Butonun iç boşluklarını artırır */
-          font-size: 16px; /* Buton metninin boyutunu artırır */
-      }
-
-      #newProductBtn {
-          font-size: 18px; /* 'Yeni Ürün Oluştur' butonunun metin boyutunu artırır */
-      }
-
-      #operationsBtn {
-          font-size: 18px; /* 'İşlemler' butonunun metin boyutunu artırır */
-      }
+        a.font-weight-bold {
+            font-weight: bold; /* Kalın font */
+            text-decoration: none; /* Alt çizgi kaldırılır */
+        }
 
 
-  </style>
+        .btn {
+            padding: 10px 20px; /* Butonun iç boşluklarını artırır */
+            font-size: 16px; /* Buton metninin boyutunu artırır */
+        }
+
+        #newProductBtn {
+            font-size: 18px; /* 'Yeni Ürün Oluştur' butonunun metin boyutunu artırır */
+            background-color: #2265A2;
+        }
+
+        #operationsBtn {
+            font-size: 18px; /* 'İşlemler' butonunun metin boyutunu artırır */
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
-<header class="header-bg text-dark p-3">
-    <div class="container d-flex justify-content-between align-items-center">
-        <!-- Logo -->
-        <div class="logo">
-            <img src="image/Logo design Vectors & Illustrations for Free Download _ Freepik.jpg" alt="Logo" style="height: 60px; width: auto;">
+    <header class="header-bg text-dark p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="image/Logo design Vectors & Illustrations for Free Download _ Freepik.jpg" alt="Logo" style="height: 60px; width: auto;">
+            </div>
+
+            <!-- Navigation and User Info -->
+            <div class="d-flex align-items-center">
+                <a href="admin-dashboard.html" class="btn btn-custom me-2">Ana Sayfa</a>
+                <a href="login.html" class="btn btn-custom me-2">Çıkış</a>
+            </div>
+        </div>
+    </header>
+
+
+
+    <div role="main" class="main">
+        <section class="page-header page-header-classic">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <ul class="breadcrumb">
+                            <li><a href="admin-dashboard.html" class="font-weight-bold">AnaSayfa</a></li>
+                            <li class="active"> > işlemler</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col p-static">
+                        <h1 data-title-border>İşlemler Paneli</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container py-2">
+            <div class="row">
+                <div class="col text-center">
+                    <button id="showAddProductForm" class="btn btn-secondary">Ürün Ekle</button>
+                    <button id="showRemoveProductForm" class="btn btn-secondary">Ürün Çıkar</button>
+                </div>
+            </div>
         </div>
 
-        <!-- Navigation and User Info -->
-        <div class="d-flex align-items-center">
-            <a href="admin-dashboard.html" class="btn btn-custom me-2">Ana Sayfa</a>
-            <a href="login.html" class="btn btn-custom me-2">Çıkış</a>
+        <div id="addProductForm" class="mb-5" style="display: none;">
+            <h3>Ürün Ekle</h3>
+            <form id="addProductFormElement">
+                <div class="form-group">
+                    <label for="productName">Ürün Adı</label>
+                    <select class="form-control" id="productName" required>
+                        <!-- Ürün seçenekleri dinamik olarak burada doldurulacak -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantityToAdd">Miktar Ekle</label>
+                    <input type="number" class="form-control" id="quantityToAdd" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
+            </form>
         </div>
+
+        <div id="removeProductForm" class="mb-5" style="display: none;">
+            <h3>Ürün Çıkar</h3>
+            <form id="removeProductFormElement">
+                <div class="form-group">
+                    <label for="removeProductName">Ürün Adı</label>
+                    <select class="form-control" id="removeProductName" required>
+                        <!-- Ürün seçenekleri dinamik olarak burada doldurulacak -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="removeProductQuantity">Miktar</label>
+                    <input type="number" class="form-control" id="removeProductQuantity" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
+            </form>
+        </div>
+
     </div>
-</header>
 
-
-
-       <div role="main" class="main">
-       <section class="page-header page-header-classic">
-           <div class="container">
-               <div class="row">
-                   <div class="col">
-                       <ul class="breadcrumb">
-                          <li><a href="admin-dashboard.html" class="font-weight-bold">AnaSayfa</a></li>
-                           <li class="active"> > işlemler</li>
-                       </ul>
-                   </div>
-               </div>
-               <div class="row">
-                   <div class="col p-static">
-                       <h1 data-title-border>İşlemler Paneli</h1>
-                   </div>
-               </div>
-           </div>
-       </section>
-
-       <div class="container py-2">
-           <div class="row">
-               <div class="col text-center">
-                  <button id="addProductBtn" class="btn btn-success mb-3">Ürün Ekle</button>
-                  <button id="removeProductBtn" class="btn btn-danger mb-3">Ürün Çıkar</button>
-               </div>
-           </div>
-       </div>
-
-
-    <div id="addProductForm" class="mb-5" style="display: none;">
-    <h3>Ürün Ekle</h3>
-    <form id="addProductFormElement">
-        <div class="form-group">
-            <label for="productName">Ürün Adı</label>
-            <input type="text" class="form-control" id="productName" required>
-        </div>
-        <div class="form-group">
-            <label for="quantityToAdd">Miktar Ekle</label>
-            <input type="number" class="form-control" id="quantityToAdd" required>
-        </div>
-        <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
-    </form>
-    </div>
-
-
-<!-- Ürün Çıkarma Formu -->
-<div id="removeProductForm" class="mb-5" style="display: none;">
-    <h3>Ürün Çıkar</h3>
-    <form>
-        <div class="form-group">
-            <label for="productName">Ürün Adı</label>
-            <input type="text" class="form-control" id="removeProductName" required>
-        </div>
-        <div class="form-group">
-            <label for="quantity">Miktar</label>
-            <input type="number" class="form-control" id="removeProductQuantity" required>
-        </div>
-        <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
-    </form>
-</div>
- </div>
-    
- 
- </div>
 
     <!-- Footer -->
-        <footer id="footer" class="bg-light text-dark">
+    <footer id="footer" class="bg-light text-dark">
         <div class="container">
 
             <div class="row py-5 my-4">
@@ -189,7 +187,7 @@
                 </div>
                 <div class="col-lg-5 pt-3">
                     <h5 class="text-3 mb-3 pb-1">MESAJ GÖNDER</h5>
-                    <form class="contact-form" action="https://www.okler.net/previews/porto/9.9.0/php/contact-form.php" method="POST">
+                    <form class="contact-form" action="" method="POST">
                         <input type="hidden" value="Contact Form" name="subject" id="subject">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Your Name..." name="name" id="name" required>
@@ -222,24 +220,38 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS ve bağımlılıkları -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- İşlemler Sayfası için JavaScript -->
     <script>
-        document.getElementById('addProductBtn').addEventListener('click', function() {
-            document.getElementById('addProductForm').style.display = 'block';
-            document.getElementById('removeProductForm').style.display = 'none';
-        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const showAddProductFormButton = document.getElementById("showAddProductForm");
+            const showRemoveProductFormButton = document.getElementById("showRemoveProductForm");
+            const addProductForm = document.getElementById("addProductForm");
+            const removeProductForm = document.getElementById("removeProductForm");
 
-        document.getElementById('removeProductBtn').addEventListener('click', function() {
-            document.getElementById('removeProductForm').style.display = 'block';
-            document.getElementById('addProductForm').style.display = 'none';
+            showAddProductFormButton.addEventListener("click", function () {
+                // Toggle the display of the add product form
+                /*//if (addProductForm.style.display === "none") {*/
+                    addProductForm.style.display = "block";
+                    removeProductForm.style.display = "none"; // Hide the remove product form
+                } else {
+                    addProductForm.style.display = "none";
+                }
+            });
+
+            showRemoveProductFormButton.addEventListener("click", function () {
+                // Toggle the display of the remove product form
+                if (removeProductForm.style.display === "none") {
+                    removeProductForm.style.display = "block";
+                    addProductForm.style.display = "none"; // Hide the add product form
+                } else {
+                    removeProductForm.style.display = "none";
+                }
+            });
         });
     </script>
-    <script src="script.js"></script>
 
+    <script src="UrunlerIslemler.js"></script>
 </body>
+
+
+
 </html>

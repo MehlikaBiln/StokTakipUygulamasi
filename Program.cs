@@ -1,11 +1,9 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
+using System.Text.Json.Serialization;
 using StokTakipUygulamasi.Data;
 using StokTakipUygulamasi.Repository;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 using StokTakipUygulamasi.Model;
 
@@ -43,24 +41,13 @@ builder.Services.AddCors(options =>
 // Register repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-// Add Authentication
-builder.Services.AddAuthentication(options =>
+// Configure Session
+builder.Services.AddDistributedMemoryCache(); // Add this line for session storage
+builder.Services.AddSession(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-    };
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set the session timeout
+    options.Cookie.HttpOnly = true; // Ensure the session cookie is HTTP only
+    options.Cookie.IsEssential = true; // Make the session cookie essential
 });
 
 // Add Authorization
@@ -74,32 +61,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "StokTakipUygulamasi", Version = "v1" });
-
-    // Define the JWT Bearer scheme used by the API
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer",
-        BearerFormat = "JWT",
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Description = "JWT Authorization header using the Bearer scheme."
-    });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            new string[] {}
-        }
-    });
 });
 
 var app = builder.Build();
@@ -121,6 +82,7 @@ app.UseCors("AllowAll"); // Apply CORS policy
 
 app.UseAuthentication(); // Enable authentication middleware
 app.UseAuthorization();  // Enable authorization middleware
+app.UseSession(); // Enable session middleware
 
 app.MapControllers();
 

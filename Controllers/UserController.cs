@@ -68,6 +68,15 @@ namespace StokTakipUygulamasi.Controllers
             return Ok("User registered successfully.");
         }
 
+        [HttpGet("role/user")]
+        public async Task<IActionResult> GetUsersByRole()
+        {
+            var users = await _context.Users
+                .Where(u => u.Role == "user")
+                .ToListAsync();
+
+            return Ok(users);
+        }
         [HttpGet("all")]
         public async Task<IActionResult> GetAllUsers()
         {

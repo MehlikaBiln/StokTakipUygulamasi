@@ -1,4 +1,5 @@
-﻿using StokTakipUygulamasi.Models;
+﻿using StokTakipUygulamasi.Model;
+using StokTakipUygulamasi.Models;
 using System.ComponentModel.DataAnnotations;
 
 public class User
@@ -19,5 +20,8 @@ public class User
 
     public ICollection<Product> Products { get; set; } = new List<Product>();
     public ICollection<Category> Categories { get; set; } = new List<Category>();
+
+    public ICollection<UserCategory> UserCategories { get; set; } = new List<UserCategory>();
+
 }
 

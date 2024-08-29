@@ -41,11 +41,13 @@ public class ProductController : ControllerBase
             AddedDate = product.AddedDate,
             UpdatedDate = product.UpdatedDate,
             CategoryName = product.Category.Name,
-            UserName = product.User.Username
+            UserName = product.User.Username,
+            Unit = product.Unit // Unit alanını ekledik
         };
 
         return Ok(productDto);
     }
+
 
     [HttpPost("add")]
     public async Task<IActionResult> Create(ProductDto productDto)
@@ -74,7 +76,8 @@ public class ProductController : ControllerBase
             AddedDate = DateTime.UtcNow, // Tarihleri sunucu tarafında ayarlıyoruz
             UpdatedDate = DateTime.UtcNow, // Tarihleri sunucu tarafında ayarlıyoruz
             Category = category,
-            User = user
+            User = user,
+            Unit = productDto.Unit // Unit alanını ekledik
         };
 
         _context.Products.Add(product);
@@ -89,12 +92,12 @@ public class ProductController : ControllerBase
             AddedDate = product.AddedDate,
             UpdatedDate = product.UpdatedDate,
             CategoryName = product.Category.Name,
-            UserName = product.User.Username
+            UserName = product.User.Username,
+            Unit = product.Unit // Unit alanını ekledik
         };
 
         return CreatedAtAction(nameof(GetById), new { id = product.Id }, createdProductDto);
     }
-
 
 
     [HttpPut("decrease")]
