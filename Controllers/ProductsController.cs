@@ -42,7 +42,7 @@ public class ProductController : ControllerBase
             UpdatedDate = product.UpdatedDate,
             CategoryName = product.Category.Name,
             UserName = product.User.Username,
-            Unit = product.Unit // Unit alanını ekledik
+            Unit = product.Unit 
         };
 
         return Ok(productDto);

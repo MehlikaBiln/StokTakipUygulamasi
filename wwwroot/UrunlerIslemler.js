@@ -36,7 +36,7 @@
         }
     }
 
-    // Sayfa yüklendiğinde ürün seçeneklerini almak ve doldurmak için fonksiyonu çağırıyoruz
+
     await fetchAndPopulateProducts();
 
     // Ürün Ekleme Formu
@@ -48,7 +48,7 @@
             const formData = {
                 productName: document.getElementById('productName').value,
                 quantityToAdd: parseInt(document.getElementById('quantityToAdd').value, 10),
-                quantityToRemove: 0 // Çıkarma yapılmayacaksa 0
+                quantityToRemove: 0 
             };
 
             try {
