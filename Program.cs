@@ -40,6 +40,9 @@ builder.Services.AddCors(options =>
 
 // Register repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+
 
 // Configure Session
 builder.Services.AddDistributedMemoryCache(); // Add this line for session storage

@@ -64,7 +64,7 @@ public class CategoryController : ControllerBase
                     UpdatedDate = p.UpdatedDate,
                     CategoryName = c.Name,
                     UserName = _context.Users.FirstOrDefault(u => u.Id == p.UserId).Username,
-                    Unit = p.Unit // Unit alanını ekledik
+                    Unit = p.Unit
                 }).ToList()
             }).FirstOrDefault();
 

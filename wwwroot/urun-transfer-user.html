@@ -1,14 +1,10 @@
 ﻿<!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeni Ürün Oluştur</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <title>Ürün Transferi</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .header-bg {
             background-color: #EAF0F7;
@@ -58,7 +54,9 @@
             text-decoration: none; /* Alt çizgi kaldırılır */
         }
 
-
+        .breadcrumb {
+            background-color: #062654;
+        }
 
         .btn {
             padding: 10px 20px; /* Butonun iç boşluklarını artırır */
@@ -72,21 +70,62 @@
         #operationsBtn {
             font-size: 18px; /* 'İşlemler' butonunun metin boyutunu artırır */
         }
+
+        .container1 {
+            max-width: 600px; /* Konteyner genişliğini ayarlamak için */
+            margin: auto; /* Konteyneri ortalamak için */
+        }
+
+
+        h1 {
+            margin-bottom: 30px; /* Başlık ile form arasındaki boşluk */
+        }
+
+        .form-group {
+            display: flex; /* Form elemanlarını yatayda hizalamak için */
+            align-items: center; /* Dikeyde ortalamak için */
+            margin-bottom: 20px; /* Form elemanları arasındaki boşluk */
+        }
+
+        .form-label {
+            margin-right: 10px; /* Etiket ile input arasındaki boşluk */
+            white-space: nowrap; /* Etiket metninin kaymasını önlemek için */
+        }
+
+        .form-control {
+            width: auto; /* Input alanının otomatik genişlikte olması için */
+            flex: 1; /* Input alanının genişlemesi için */
+            padding: 20px; /* İç boşluk */
+            box-sizing: border-box; /* Padding ve border hesaplaması */
+        }
+
+        .btn-primary {
+            background-color: #2265A2; /* Buton arka plan rengi */
+            border: none; /* Kenarlık kaldırılır */
+            color: white; /* Buton metin rengi */
+            padding: 10px 20px; /* Butonun iç boşlukları */
+            font-size: 16px; /* Buton metin boyutu */
+        }
+
+            .btn-primary:hover {
+                background-color: #062654; /* Hover rengi */
+            }
+        /* Hover rengi */
+        }
     </style>
 
 </head>
 <body>
-    <!-- Header -->
     <header class="header-bg text-dark p-3">
         <div class="container d-flex justify-content-between align-items-center">
-          
+            <!-- Logo -->
             <div class="logo">
                 <img src="image/Logo design Vectors & Illustrations for Free Download _ Freepik.jpg" alt="Logo" style="height: 60px; width: auto;">
             </div>
 
-         
+            <!-- Navigation and User Info -->
             <div class="d-flex align-items-center">
-                <a href="admin-dashboard.html" class="btn btn-custom me-2">Ana Sayfa</a>
+                <a href="user-dashboard.html" class="btn btn-custom me-2">Ana Sayfa</a>
                 <a href="login.html" class="btn btn-custom me-2">Çıkış</a>
             </div>
         </div>
@@ -99,61 +138,51 @@
                 <div class="row">
                     <div class="col">
                         <ul class="breadcrumb">
-                            <li><a href="admin-dashboard.html" class="font-weight-bold">AnaSayfa</a></li>
-                            <li class="active"> > Yeni Ürün</li>
+                            <li><a href="user-dashboard.html" class="font-weight-bold">AnaSayfa</a></li>
+                            <li><a href="Islemler.html" class="font-weight-bold"> > İşlemler</a></li>
+                            <li class="active"> > Ürün Transferi</li>
+
                         </ul>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col p-static">
-                        <h1 data-title-border>Yeni Ürün Oluşturma Paneli</h1>
+                        <h1 data-title-border>Ürün Transfer Paneli</h1>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="container py-2">
-            <div class="row">
-                <div class="col text-center">
-                    <div class="container mt-5">
-                        <h1>Yeni Ürün Oluştur</h1>
-                        <form id="createProductForm">
-                            <div class="form-group d-flex align-items-center mb-3">
-                                <label for="productName" class="col-form-label me-3">Ürün Adı:</label>
-                                <input type="text" class="form-control" id="productName" required>
-                            </div>
-                            <div class="form-group d-flex align-items-center mb-3">
-                                <label for="productBarcode" class="col-form-label me-3">Barkod:</label>
-                                <input type="text" class="form-control" id="productBarcode" required>
-                            </div>
-                            <div class="form-group d-flex align-items-center mb-3">
-                                <label for="productQuantity" class="col-form-label me-3">Miktar:</label>
-                                <input type="number" class="form-control" id="productQuantity" required>
-                            </div>
-                            <div class="form-group d-flex align-items-center mb-3">
-                                <label for="productUnit" class="col-form-label me-3">Birim:</label>
-                                <input type="text" class="form-control" id="productUnit" required>
-                            </div>
-                            <div class="form-group d-flex align-items-center mb-3">
-                                <label for="productCategory" class="col-form-label me-3">Kategori Adı:</label>
-                                <input type="text" class="form-control" id="productCategory" required>
-                            </div>
-                            <div class="form-group d-flex align-items-center mb-3">
-                                <label for="productUser" class="col-form-label me-3">Kullanıcı Adı:</label>
-                                <input type="text" class="form-control" id="productUser" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-3">Kaydet</button>
-                        </form>
-                    </div>
+        <div class="container">
+
+            <h1>Ürün Transferi</h1>
+            <form id="productTransferForm">
+                <div class="form-group">
+                    <label for="productName">Ürün Adı</label>
+                    <select id="productName" name="productName" class="form-control">
+                        <!-- Ürünler buraya yüklenecek -->
+                    </select>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="fromDepot">Gönderici Depo</label>
+                    <select id="fromDepot" name="fromDepot" class="form-control">
+                        <!-- Depolar buraya yüklenecek -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="toDepot">Alıcı Depo</label>
+                    <select id="toDepot" name="toDepot" class="form-control">
+                        <!-- Depolar buraya yüklenecek -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Miktar</label>
+                    <input type="number" id="quantity" name="quantity" class="form-control" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Transfer Et</button>
+            </form>
         </div>
     </div>
-
-
-
-    <!-- Ana İçerik -->
-    <!-- Footer -->
     <footer id="footer" class="bg-light text-dark">
         <div class="container">
 
@@ -162,7 +191,7 @@
                     <h5 class="text-3 mb-3">HAKKINDA</h5>
                     <p>Gaziantep Organize Sanayi Bölgesi, Bakanlar Kurulu Kararı ile T.C. Sanayi ve Ticaret Bakanlığı’na bağlı olarak, Vilayet, Belediye, İl Özel İdaresi, Ticaret Odası Sanayi Odası, Sanayi İş Odaları Derneği ve Organize Sanayi Bölgesi Sanayicileri derneği iştirakleri ile kurulmuştur.</p>
                     <p class="mb-0">
-                        <a href="admin-dashboard.html" class="btn btn-primary">ANA SAYFA</a>
+                        <a href="user-dashboard.html" class="btn btn-primary">ANA SAYFA</a>
                     </p>
                 </div>
                 <div class="col-md-5 col-lg-3 mb-5 mb-lg-0 pt-3">
@@ -184,7 +213,7 @@
                 </div>
                 <div class="col-lg-5 pt-3">
                     <h5 class="text-3 mb-3 pb-1">MESAJ GÖNDER</h5>
-                    <form class="contact-form" action="" method="POST">
+                    <form class="contact-form" action="https://www.okler.net/previews/porto/9.9.0/php/contact-form.php" method="POST">
                         <input type="hidden" value="Contact Form" name="subject" id="subject">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Your Name..." name="name" id="name" required>
@@ -216,20 +245,10 @@
             </div>
         </div>
     </footer>
-    <!-- Bootstrap JS ve bağımlılıkları -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-            integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-            crossorigin="anonymous"></script>
-    <script src="admin.js"></script>
-
+    <!-- Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="transfer.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StokTakipUygulamasi.DTO;
 using StokTakipUygulamasi.Model;
 using StokTakipUygulamasi.Models;
 
@@ -15,6 +16,7 @@ namespace StokTakipUygulamasi.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<UserCategory> UserCategories { get; set; }
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // User ve Product arasındaki ilişki

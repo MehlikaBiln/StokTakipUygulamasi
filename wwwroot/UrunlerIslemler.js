@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // API'den ürün seçeneklerini almak ve select elemanlarını doldurmak için fonksiyon
     async function fetchAndPopulateProducts() {
         try {
-            const response = await fetch('https://localhost:7554/api/admin/Admin'); // Gerçek API endpoint'i buraya yazın
+            const response = await fetch('https://localhost:7554/api/admin/Admin');
             if (!response.ok) {
                 throw new Error('Ürünler alınamadı.');
             }
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // API yanıtından ürün listesini alın
             const productsArray = products['$values'];
 
-            // Mevcut seçenekleri temizliyoruz
+           
             if (productNameSelect && removeProductNameSelect) {
                 productNameSelect.innerHTML = '';
                 removeProductNameSelect.innerHTML = '';
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Select elemanlarını alınan ürünlerle dolduruyoruz
                 productsArray.forEach(product => {
                     const option = document.createElement('option');
-                    option.value = product.name; // Ürün nesnesinde 'name' özelliği olduğunu varsayıyoruz
+                    option.value = product.name; 
                     option.textContent = product.name;
 
                     // Her iki select elemanına da seçenekleri ekliyoruz

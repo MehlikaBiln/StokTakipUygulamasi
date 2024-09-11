@@ -1,11 +1,13 @@
 ﻿namespace StokTakipUygulamasi.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
+    using Dapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using StokTakipUygulamasi.Data;
     using StokTakipUygulamasi.DTO;
     using StokTakipUygulamasi.Models;
+    using StokTakipUygulamasi.Repository;
+    using StokTakipUygulamasi.Services;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
@@ -14,12 +16,18 @@
     [Route("api/admin/[controller]")]
     public class AdminController : ControllerBase
     {
+        private readonly IProductRepository _productRepository;
         private readonly AppDbContext _context;
 
-        public AdminController(AppDbContext context)
+        // Constructor injection of IProductRepository and AppDbContext
+        public AdminController(IProductRepository productRepository, AppDbContext context)
         {
+            _productRepository = productRepository;
             _context = context;
         }
+
+
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -72,7 +80,6 @@
             return Ok(productDto);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Create(ProductDto productDto)
         {
@@ -123,7 +130,6 @@
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, createdProductDto);
         }
 
-
         [HttpPut("decreaseByName")]
         public async Task<IActionResult> DecreaseQuantityByName([FromBody] ProductQuantityUpdateDto dto)
         {
@@ -162,7 +168,6 @@
         [HttpDelete("ByName/{name}")]
         public async Task<IActionResult> DeleteByName(string name)
         {
-            // Ürün adını kullanarak ürünü bul
             var product = await _context.Products
                 .FirstOrDefaultAsync(p => p.Name == name);
 
@@ -171,7 +176,6 @@
                 return NotFound();
             }
 
-            // Ürünü sil
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
@@ -229,5 +233,51 @@
 
             return Ok(products);
         }
+        [HttpGet("products-with-depot-info")]
+        public async Task<ActionResult<List<ProductWithDepotInfoDto>>> GetProductsWithDepotInfo()
+        {
+            var result = await _productRepository.GetProductsWithDepotInfoAsync();
+            return Ok(result);
+        }
+
+        [HttpPost("transfer")]
+        public async Task<IActionResult> TransferProductBetweenDepots(string productName, string fromDepot, string toDepot, int quantity)
+        {
+            try
+            {
+                await _productRepository.TransferProductBetweenDepots(productName, fromDepot, toDepot, quantity);
+                return Ok(new { Message = "Ürün başarıyla transfer edildi." });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
+
+        [HttpGet("api/admin/available-products")]
+        public async Task<IActionResult> GetAvailableProductsAsync()
+        {
+            var query = @"
+    SELECT DISTINCT p.""Name""
+    FROM public.""Products"" p
+    JOIN public.""Categories"" c ON p.""CategoryId"" = c.""Id""
+    WHERE EXISTS (
+        SELECT 1
+        FROM public.""Products"" p2
+        WHERE p.""Name"" = p2.""Name""
+        AND p2.""CategoryId"" <> p.""CategoryId""
+    )
+    ORDER BY p.""Name"";
+    ";
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                var products = await connection.QueryAsync<ProductDto>(query);
+                return Ok(products);
+            }
+        }
+
+
+
     }
 }

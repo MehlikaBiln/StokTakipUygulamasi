@@ -48,7 +48,7 @@
     }
 });
 
-// Register iþlemi
+
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('registerForm');
 
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    alert('Kayýt baþarýlý!');
+                    alert('Kayit basarili!');
                     window.location.href = 'login.html';
                 } else {
                     alert('Kayit sirasinda bir hata olustu: ' + response.statusText);
@@ -105,6 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (operationsBtn) {
         operationsBtn.addEventListener('click', () => {
             window.location.href = 'Islemler.html'; // Ýþlemler sayfasýna yönlendirme
+        });
+    }
+
+    const secondBtn = document.getElementById('secondBtn');
+    if (secondBtn) {
+        secondBtn.addEventListener('click', () => {
+            window.location.href = 'list-user.html'; // Ýþlemler sayfasýna yönlendirme
         });
     }
 });
@@ -150,13 +157,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-
-
-//ADMÝN KISMI
-
-
-
-
-// KATEGORİ İŞLEMİ
 

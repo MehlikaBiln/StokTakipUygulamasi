@@ -74,7 +74,7 @@ async function showUsersForCategory(categoryId) {
     }
 }
 
-// Kullanıcıları ve kategorileri eklemek için kullanılan fonksiyon
+//kategorileri eklemek için kullanılan fonksiyon
 async function loadCategoriesForAssignment() {
     try {
         const response = await fetch('https://localhost:7554/api/Category');
