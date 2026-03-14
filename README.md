@@ -16,8 +16,8 @@ Kısaca: Kullanıcıların stoklarını takip edebildiği, CRUD operasyonları i
 
 ## Kullanılan Teknolojiler  
 - **Backend:** C# (.NET Core)  
-- **Veritabanı:** PostgreSQL / SQL Server (hangiysa)  
-- **ORM:** Entity Framework / Dapper (hangi kullanıldıysa)  
+- **Veritabanı:** PostgreSQL  
+- **ORM:** Entity Framework   
 - **Frontend:** HTML / CSS / JavaScript (veya React)  
 - **Araçlar:** Git, Visual Studio, Postman / Swagger
 
